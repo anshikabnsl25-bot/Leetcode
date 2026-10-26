@@ -1,19 +1,23 @@
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 class Solution {
     public int sumOfUnique(int[] nums) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < nums.length; i++) {
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
-
+        ArrayList<Integer> unique = new ArrayList<>();
         int sum = 0;
 
-        for (int key : map.keySet()) {
-            if (map.get(key) == 1) {
-                sum += key;
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+
+            if (count == 1) {
+                unique.add(nums[i]);
+                sum += nums[i];
             }
         }
 

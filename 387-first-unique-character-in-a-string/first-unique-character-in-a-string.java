@@ -1,15 +1,22 @@
+
+import java.util.ArrayList;
+
 class Solution {
     public int firstUniqChar(String s) {
-         int freq[]=new int [256];
-        for(char ch : s.toCharArray()){
-            freq[ch] +=1;
+        ArrayList<Character> list = new ArrayList<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            list.add(s.charAt(i));
         }
-        for(int i=0; i< s.length();i++){
-            char ch = s.charAt(i);
-            if(freq[ch]==1){
+
+        for (int i = 0; i < list.size(); i++) {
+            char ch = list.get(i);
+
+            if (list.indexOf(ch) == list.lastIndexOf(ch)) {
                 return i;
             }
         }
+
         return -1;
     }
 }
